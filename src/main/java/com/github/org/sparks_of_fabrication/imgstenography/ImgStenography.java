@@ -4,6 +4,8 @@
 
 package com.github.org.sparks_of_fabrication.imgstenography;
 
+import com.github.org.sparks_of_fabrication.imgstenography.graphics.MainFrame;
+
 /**
  *
  * @author petko
@@ -11,6 +13,8 @@ package com.github.org.sparks_of_fabrication.imgstenography;
 public class ImgStenography {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        MainFrame mFrame = new MainFrame();
+        
+        mFrame.setVisible(true);
     }
 }
