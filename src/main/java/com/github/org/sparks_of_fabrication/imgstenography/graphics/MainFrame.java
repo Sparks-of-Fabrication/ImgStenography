@@ -32,6 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
         imageLoader = ImageLoader.getInstance();
         
         jLabel1.setText(String.format("Current File Chosen: %s", imageLoader.getFile().getName()));
+        jLabel2.setText("");
         
         imagePreview1.setVisible(false);
         jToggleButton1.setEnabled(false);
@@ -39,12 +40,16 @@ public class MainFrame extends javax.swing.JFrame {
         imagePreview1.addComponentListener(new ComponentAdapter() {
                 @Override
                 public void componentShown(ComponentEvent e) {
-                    showImagePreview();
+                    if(imageLoader.isTriggered()) {
+                        showImagePreview();
+                    }
                 }
 
                 @Override
                 public void componentResized(ComponentEvent e) {
-                    showImagePreview();
+                    if(imageLoader.isTriggered()) {
+                          showImagePreview();
+                    }
                 }
             });
     }
@@ -62,6 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         imagePreview1 = new com.github.org.sparks_of_fabrication.imgstenography.graphics.ImagePreview();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ImageStenography");
@@ -100,6 +106,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 205, Short.MAX_VALUE)
         );
 
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +116,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imagePreview1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jToggleButton1)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2))
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
                 .addContainerGap(695, Short.MAX_VALUE))
@@ -121,7 +132,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jToggleButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jToggleButton1)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(imagePreview1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(314, Short.MAX_VALUE))
@@ -141,6 +154,8 @@ public class MainFrame extends javax.swing.JFrame {
                 if(imageLoader.getFile() != null) {
                     jLabel1.setText(String.format("Current File Chosen: %s", imageLoader.getFile().getName()));
                     jToggleButton1.setEnabled(true);
+                    
+                    showImagePreview();
                 }else{
                     jLabel1.setText(String.format("Current File Chosen: %s", ""));
                     jToggleButton1.setEnabled(false);
@@ -163,6 +178,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void showImagePreview() {
+        Dimension dimension = imageLoader.imageGetDimensions();
+        String dimensionText = String.format("width: %d, height: %d",  dimension.width, dimension.height);
+        jLabel2.setText(dimensionText);
         File file = imageLoader.getFile();
         
         imagePreview1.drawImage(file);
@@ -207,6 +225,7 @@ public class MainFrame extends javax.swing.JFrame {
     private com.github.org.sparks_of_fabrication.imgstenography.graphics.ImagePreview imagePreview1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

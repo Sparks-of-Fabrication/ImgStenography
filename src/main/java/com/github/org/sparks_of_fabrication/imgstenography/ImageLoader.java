@@ -6,8 +6,13 @@ package com.github.org.sparks_of_fabrication.imgstenography;
 
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Window;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -16,9 +21,11 @@ import javax.swing.JOptionPane;
  * @author petko
  */
 public class ImageLoader {
+    private boolean trigger = false;
     private static ImageLoader INSTANCE = null;
     private String path;
-    private File file = new File("./src/resources/default.png");
+    private File file;
+    private BufferedImage bufferedImage;
 
     private ImageLoader() {
     }
@@ -29,6 +36,23 @@ public class ImageLoader {
 
     public String getPath() {
         return path;
+    }
+    
+    public Dimension imageGetDimensions() {
+        if(file == null) return new Dimension();
+        Dimension result = new Dimension();
+          
+         result.setSize(bufferedImage.getWidth(), bufferedImage.getHeight());
+        
+        return result;
+    }
+    
+    private void trigger() {
+        this.trigger = true;
+    }
+    
+    public boolean isTriggered() {
+        return this.trigger;
     }
     
     private String getExt(File file) {
@@ -43,6 +67,14 @@ public class ImageLoader {
         System.out.println(ext);
        if(ext.toLowerCase().equals("png") || ext.toLowerCase().equals("jpg")) {
              this.file = file;
+             
+             try{
+                bufferedImage = ImageIO.read(this.file);
+                trigger();
+             }catch(IOException ex) {
+                 ex.printStackTrace();
+                 System.exit(1);
+             }
              return false;
         }
        
@@ -51,6 +83,9 @@ public class ImageLoader {
     }
 
     public File getFile() {
+        if(file == null) {
+            return new File("");
+        }
         return file;
     }
  
