@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.github.org.sparks_of_fabrication.imgstenography;
+package com.github.org.sparks_of_fabrication.imgstenography.loaders;
 
 import java.awt.Component;
 import java.awt.Dialog;
@@ -20,15 +20,11 @@ import javax.swing.JOptionPane;
  *
  * @author petko
  */
-public class ImageLoader {
+public class ImageLoader implements Loader<BufferedImage> {
     private boolean trigger = false;
-    private static ImageLoader INSTANCE = null;
     private String path;
     private File file;
     private BufferedImage bufferedImage;
-
-    private ImageLoader() {
-    }
 
     public void setPath(String path) {
         this.path = path;
@@ -46,6 +42,18 @@ public class ImageLoader {
         
         return result;
     }
+
+    @Override
+    public BufferedImage fetchFile() {
+         return  bufferedImage;
+    }
+
+    @Override
+    public String fetchContent() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
     
     private void trigger() {
         this.trigger = true;
@@ -65,7 +73,7 @@ public class ImageLoader {
         String ext = getExt(file);
         
         System.out.println(ext);
-       if(ext.toLowerCase().equals("png") || ext.toLowerCase().equals("jpg")) {
+       if(ext.toLowerCase().equals("png") || ext.toLowerCase().equals("jpg") || ext.toLowerCase().equals("bmp")) {
              this.file = file;
              
              try{
@@ -87,14 +95,5 @@ public class ImageLoader {
             return new File("");
         }
         return file;
-    }
- 
-    
-    public static ImageLoader getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ImageLoader();
-        }
-        
-        return INSTANCE;
     }
 }

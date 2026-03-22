@@ -25,13 +25,9 @@ public class ImagePreview extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void drawImage(File fileImage) {       
-        try {
-            image = ImageIO.read(fileImage);
-            repaint();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+    public void drawImage(BufferedImage fileImage) {        
+         image = fileImage;
+         repaint();
     }
 
     @Override
