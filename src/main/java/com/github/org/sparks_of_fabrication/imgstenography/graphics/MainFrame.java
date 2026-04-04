@@ -29,7 +29,6 @@ public class MainFrame extends javax.swing.JFrame {
         fileLoader = LoaderSpawn.createLoader(LoaderSpawn.LoaderType.FILE);
         
         this.imagePanel1.inherit(imageLoader);
-        this.textInputPanelSwitcher2.inherit(fileLoader);
     }
 
     /**
@@ -42,8 +41,6 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         imagePanel1 = new com.github.org.sparks_of_fabrication.imgstenography.graphics.ImagePanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        textInputPanelSwitcher2 = new com.github.org.sparks_of_fabrication.imgstenography.graphics.textpanels.TextInputPanelSwitcher();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ImageStenography");
@@ -54,35 +51,21 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("File\\Input");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                .addGap(21, 21, 21)
-                .addComponent(jToggleButton1)
-                .addGap(18, 18, 18)
-                .addComponent(textInputPanelSwitcher2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textInputPanelSwitcher2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addComponent(imagePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,12 +80,6 @@ public class MainFrame extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_formWindowClosing
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        this.textInputPanelSwitcher2.switchMode();
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     
     /**
@@ -132,7 +109,5 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.org.sparks_of_fabrication.imgstenography.graphics.ImagePanel imagePanel1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private com.github.org.sparks_of_fabrication.imgstenography.graphics.textpanels.TextInputPanelSwitcher textInputPanelSwitcher2;
     // End of variables declaration//GEN-END:variables
 }
