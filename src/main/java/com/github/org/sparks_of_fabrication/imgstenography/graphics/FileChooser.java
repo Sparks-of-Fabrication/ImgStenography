@@ -11,22 +11,23 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.JFileChooser;
 import javax.swing.plaf.FileChooserUI;
+import com.github.org.sparks_of_fabrication.imgstenography.loaders.LoaderSolver;
 
 /**
  *
  * @author petko
  */
-public class ImageChooser extends javax.swing.JFrame {
+public class FileChooser extends javax.swing.JFrame {
     
-    private ImageLoader imageLoader;
+    private LoaderSolver imageLoader;
    
     private boolean isFileChoserVisible;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ImageChooser.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FileChooser.class.getName());
 
     /**
      * Creates new form ImageChooser
      */
-    public ImageChooser(ImageLoader loader) {
+    public FileChooser(LoaderSolver loader) {
         initComponents();
         
         this.isFileChoserVisible = false;
@@ -94,7 +95,7 @@ public class ImageChooser extends javax.swing.JFrame {
             
             boolean error = imageLoader.setFile(this, selectedFile);
             
-            if(!error) {
+            if(error) {
                 this.dispose();
             }
         }

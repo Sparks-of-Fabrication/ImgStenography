@@ -60,7 +60,7 @@ public class ImagePanel extends javax.swing.JPanel implements ChildPanel<ImageLo
         Dimension dimension = imageLoader.imageGetDimensions();
         String dimensionText = String.format("width: %d, height: %d",  dimension.width, dimension.height);
         jLabel2.setText(dimensionText);
-        BufferedImage file = imageLoader.fetchFile();
+        BufferedImage file = imageLoader.convertIntoSolver();
         
         imagePreview1.drawImage(file);
     }
@@ -163,7 +163,7 @@ public class ImagePanel extends javax.swing.JPanel implements ChildPanel<ImageLo
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         // TODO add your handling code here:
 
-        ImageChooser imgForm = new ImageChooser(imageLoader);
+        FileChooser imgForm = new FileChooser(imageLoader);
 
         imgForm.addWindowListener(new WindowAdapter() {
             @Override

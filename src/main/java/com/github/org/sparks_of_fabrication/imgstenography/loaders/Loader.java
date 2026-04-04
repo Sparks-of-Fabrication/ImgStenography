@@ -4,12 +4,25 @@
  */
 package com.github.org.sparks_of_fabrication.imgstenography.loaders;
 
+import java.awt.Component;
+import java.io.File;
+import java.util.Optional;
+
 /**
  *
  * @author petko
- * @param <T>
  */
-public interface  Loader <T> {
-    T fetchFile();
-    String fetchContent();
+public interface Loader {
+    default Optional<String> fetchContent() {
+        return Optional.empty();
+    }
+    boolean setFile(Component owner, File file);
+    boolean setFile(File file);
+    File getFile();
+    void flush();
+    default String getExt(File file) {
+        String name = file.getName();
+        int dot = name.lastIndexOf('.');
+        return (dot == -1) ? "" : name.substring(dot + 1);
+    }
 }

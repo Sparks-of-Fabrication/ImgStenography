@@ -11,8 +11,8 @@ import java.util.function.Supplier;
  * @author petko
  */
 public class LoaderSpawn {
-    public static class LoaderType<T extends Loader<?>> {
-        public static final LoaderType<FileLoader> FILE = new LoaderType<>(FileLoader::new);
+    public static class LoaderType<T extends LoaderSolver<?>> {
+        public static final LoaderType<TextFileLoader> FILE = new LoaderType<>(TextFileLoader::new);
         public static final LoaderType<ImageLoader> IMAGE = new LoaderType<>(ImageLoader::new);
         
         private final Supplier<T> factory;
@@ -24,7 +24,7 @@ public class LoaderSpawn {
         public T create() {return factory.get(); };
     }
     
-    public static <T extends Loader<?>> T createLoader(LoaderType<T> type) {
+    public static <T extends LoaderSolver<?>> T createLoader(LoaderType<T> type) {
         return type.create();
     }
 }

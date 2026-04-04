@@ -8,11 +8,5 @@ package com.github.org.sparks_of_fabrication.imgstenography.loaders;
  *
  * @author petko
  */
-public class FileLoaderFactory implements Factory<TextFileLoader>{
-
-    @Override
-    public TextFileLoader create() {
-        return new TextFileLoader();
-    }
-
+public record FileMetadata(String name, int chars, int lines, String ext) {
 }
